@@ -31,6 +31,14 @@ public class DatabaseInitialize
                             "managerId INTEGER not null," +
                             "addressId INTEGER not null)"
             );
+            statement.executeUpdate(
+                    "CREATE TABLE IF NOT EXISTS Products(" +
+                            "id INTEGER Primary key, " +
+                            "name varchar(50) not null, " +
+                            "description varchar(512) not null," +
+                            "categoryId INTEGER not null," +
+                            "price DECIMAL not null)"
+            );
             statement.close();
             connection.close();
         } catch (SQLException e)
