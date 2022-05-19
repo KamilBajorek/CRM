@@ -39,6 +39,15 @@ public class DatabaseInitialize
                             "categoryId INTEGER not null," +
                             "price DECIMAL not null)"
             );
+            statement.executeUpdate(
+                    "CREATE TABLE IF NOT EXISTS Users(" +
+                            "id INTEGER Primary key, " +
+                            "emailId INTEGER not null," +
+                            "name varchar(50) not null, " +
+                            "surname varchar(35) not null," +
+                            "login varchar(50) not null, " +
+                            "password varchar(128) not null, "
+            );
             statement.close();
             connection.close();
         } catch (SQLException e)
