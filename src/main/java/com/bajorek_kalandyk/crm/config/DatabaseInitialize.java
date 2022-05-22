@@ -46,7 +46,12 @@ public class DatabaseInitialize
                             "name varchar(50) not null, " +
                             "surname varchar(35) not null," +
                             "login varchar(50) not null, " +
-                            "password varchar(128) not null, "
+                            "password varchar(128) not null)"
+            );
+            statement.executeUpdate(
+                    "CREATE TABLE IF NOT EXISTS Mails(" +
+                            "id INTEGER Primary key, " +
+                            "mail varchar(50) not null)"
             );
             statement.close();
             connection.close();

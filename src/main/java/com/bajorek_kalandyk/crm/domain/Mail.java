@@ -10,8 +10,6 @@ import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
-import javax.persistence.JoinColumn;
-import javax.persistence.OneToOne;
 import javax.persistence.Table;
 
 @NoArgsConstructor
@@ -20,19 +18,13 @@ import javax.persistence.Table;
 @Getter
 @Builder(toBuilder = true)
 @EqualsAndHashCode
-@Table(name = "Clients")
-public class Client
+@Table(name = "Mails")
+public class Mail
 {
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
     private Long id;
-    private Long managerId;
-    private Long addressId;
 
-    @OneToOne
-    @JoinColumn(name = "emailId")
-    private Mail email;
-
-    private String name;
-    private String surname;
+    private String mail;
 }
+
