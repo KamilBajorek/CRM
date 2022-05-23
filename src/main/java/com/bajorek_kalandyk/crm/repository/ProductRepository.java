@@ -1,6 +1,6 @@
 package com.bajorek_kalandyk.crm.repository;
 
-import com.bajorek_kalandyk.crm.domain.Product;
+import com.bajorek_kalandyk.crm.domain.model.Product;
 import org.springframework.data.repository.CrudRepository;
 import org.springframework.stereotype.Repository;
 import org.springframework.transaction.annotation.Transactional;

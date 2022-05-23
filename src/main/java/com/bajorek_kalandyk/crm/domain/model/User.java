@@ -1,8 +1,11 @@
-package com.bajorek_kalandyk.crm.domain;
+package com.bajorek_kalandyk.crm.domain.model;
 
 import lombok.*;
+import org.springframework.security.core.GrantedAuthority;
+import org.springframework.security.core.userdetails.UserDetails;
 
 import javax.persistence.*;
+import java.util.Collection;
 
 @NoArgsConstructor
 @AllArgsConstructor
@@ -16,7 +19,10 @@ public class User
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
     private Long id;
-    private Long emailId;
+
+    @OneToOne
+    @JoinColumn(name = "emailId")
+    private Mail email;
 
     private String login;
     private String password;

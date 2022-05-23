@@ -1,4 +1,4 @@
-package com.bajorek_kalandyk.crm.domain;
+package com.bajorek_kalandyk.crm.domain.model;
 
 import lombok.*;
 

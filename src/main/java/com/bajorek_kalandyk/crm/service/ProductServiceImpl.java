@@ -1,6 +1,6 @@
 package com.bajorek_kalandyk.crm.service;
 
-import com.bajorek_kalandyk.crm.domain.Product;
+import com.bajorek_kalandyk.crm.domain.model.Product;
 import com.bajorek_kalandyk.crm.repository.ProductRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;

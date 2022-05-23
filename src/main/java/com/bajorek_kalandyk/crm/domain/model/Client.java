@@ -1,4 +1,4 @@
-package com.bajorek_kalandyk.crm.domain;
+package com.bajorek_kalandyk.crm.domain.model;
 
 import lombok.AllArgsConstructor;
 import lombok.Builder;
@@ -10,6 +10,8 @@ import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.JoinColumn;
+import javax.persistence.OneToOne;
 import javax.persistence.Table;
 
 @NoArgsConstructor
@@ -18,13 +20,22 @@ import javax.persistence.Table;
 @Getter
 @Builder(toBuilder = true)
 @EqualsAndHashCode
-@Table(name = "Mails")
-public class Mail
+@Table(name = "Clients")
+public class Client
 {
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
     private Long id;
+    private Long managerId;
 
-    private String mail;
+    @OneToOne
+    @JoinColumn(name = "addressId")
+    private Address address;
+
+    @OneToOne
+    @JoinColumn(name = "emailId")
+    private Mail email;
+
+    private String name;
+    private String surname;
 }
-

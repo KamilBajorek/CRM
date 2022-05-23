@@ -1,6 +1,6 @@
 package com.bajorek_kalandyk.crm.service;
 
-import com.bajorek_kalandyk.crm.domain.Client;
+import com.bajorek_kalandyk.crm.domain.model.Client;
 
 import java.util.List;
 

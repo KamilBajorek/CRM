@@ -44,7 +44,7 @@ public class DatabaseInitialize
                             "id INTEGER Primary key, " +
                             "emailId INTEGER not null," +
                             "name varchar(50) not null, " +
-                            "surname varchar(35) not null," +
+                            "surname varchar(50) not null," +
                             "login varchar(50) not null, " +
                             "password varchar(128) not null)"
             );
@@ -52,6 +52,15 @@ public class DatabaseInitialize
                     "CREATE TABLE IF NOT EXISTS Mails(" +
                             "id INTEGER Primary key, " +
                             "mail varchar(50) not null)"
+            );
+            statement.executeUpdate(
+                    "CREATE TABLE IF NOT EXISTS Addresses(" +
+                            "id INTEGER Primary key, " +
+                            "street varchar(64) not null," +
+                            "city varchar(64) not null," +
+                            "zipCode varchar(6) not null," +
+                            "houseNumber varchar(10) not null," +
+                            "country varchar(50) not null)"
             );
             statement.close();
             connection.close();

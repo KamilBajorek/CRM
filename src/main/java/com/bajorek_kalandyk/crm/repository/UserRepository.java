@@ -1,6 +1,6 @@
 package com.bajorek_kalandyk.crm.repository;
 
-import com.bajorek_kalandyk.crm.domain.User;
+import com.bajorek_kalandyk.crm.domain.model.User;
 import org.springframework.data.repository.CrudRepository;
 import org.springframework.stereotype.Repository;
 import org.springframework.transaction.annotation.Transactional;
@@ -9,5 +9,6 @@ import org.springframework.transaction.annotation.Transactional;
 @Transactional(readOnly = true)
 public interface UserRepository extends CrudRepository<User, Long>
 {
+    User findByLogin(String login);
 }
 

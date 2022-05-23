@@ -1,12 +1,17 @@
 package com.bajorek_kalandyk.crm.service;
 
-import com.bajorek_kalandyk.crm.domain.Mail;
+import com.bajorek_kalandyk.crm.domain.model.Mail;
 import com.bajorek_kalandyk.crm.repository.MailRepository;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Service;
 
 import java.util.List;
+import java.util.Objects;
 import java.util.Optional;
 
+import static java.util.Objects.requireNonNullElseGet;
+
+@Service
 public class MailServiceImpl implements MailService
 {
     @Autowired
@@ -25,8 +30,9 @@ public class MailServiceImpl implements MailService
     }
 
     @Override
-    public void createMail(final Mail mail)
+    public Mail createMail(final String mail)
     {
-        repository.save(mail);
+        Mail currentMail = repository.findMailByMail(mail);
+        return requireNonNullElseGet(currentMail, () -> repository.save(Mail.builder().mail(mail).build()));
     }
 }

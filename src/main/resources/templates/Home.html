@@ -3,5 +3,8 @@
 <head><title>Home Page</title></head>
 <body>
 <h1>Welcome to  <span th:text="${appName}"/> by Kamil Bajorek & Marcin Kalandyk</h1>
+<div class="form-group">
+    <span><a href="/" th:href="@{/login?logout=true}">Wyloguj</a></span>
+</div>
 </body>
 </html>

@@ -1,17 +1,20 @@
 package com.bajorek_kalandyk.crm.controller.rest;
 
-
-import com.bajorek_kalandyk.crm.domain.User;
+import com.bajorek_kalandyk.crm.domain.form.UserForm;
+import com.bajorek_kalandyk.crm.domain.model.User;
 import com.bajorek_kalandyk.crm.service.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
+import org.springframework.validation.annotation.Validated;
 import org.springframework.web.bind.annotation.*;
 
+import javax.validation.Valid;
 import java.util.List;
 import java.util.Optional;
 
 @RestController
+@Validated
 public class UserRestController
 {
     private static final String ENDPOINT = "user";
@@ -40,9 +43,15 @@ public class UserRestController
     @RequestMapping(value = ENDPOINT + "/create",
             method = RequestMethod.POST,
             headers = "Accept=application/json")
-    public ResponseEntity<User> createUser(@RequestBody User user)
+    public ResponseEntity<User> createUser(@RequestBody @Valid UserForm form)
     {
-        userService.createUser(user);
-        return new ResponseEntity<>(user, HttpStatus.OK);
+        try
+        {
+            final User createdUser = userService.createUser(form);
+            return new ResponseEntity<>(createdUser, HttpStatus.OK);
+        } catch (Exception e)
+        {
+            return new ResponseEntity<>(null, HttpStatus.BAD_REQUEST);
+        }
     }
 }

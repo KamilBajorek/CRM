@@ -1,6 +1,6 @@
 package com.bajorek_kalandyk.crm.controller.rest;
 
-import com.bajorek_kalandyk.crm.domain.Client;
+import com.bajorek_kalandyk.crm.domain.model.Client;
 import com.bajorek_kalandyk.crm.service.ClientService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
