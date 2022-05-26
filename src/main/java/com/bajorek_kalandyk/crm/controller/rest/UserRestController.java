@@ -1,5 +1,6 @@
 package com.bajorek_kalandyk.crm.controller.rest;
 
+import com.bajorek_kalandyk.crm.common.ApiResponse;
 import com.bajorek_kalandyk.crm.domain.form.UserForm;
 import com.bajorek_kalandyk.crm.domain.model.User;
 import com.bajorek_kalandyk.crm.service.UserService;
@@ -25,33 +26,34 @@ public class UserRestController
     @RequestMapping(value = ENDPOINT + "/getAll",
             method = RequestMethod.GET,
             headers = "Accept=application/json")
-    public ResponseEntity<List<User>> getUsers()
+    public ApiResponse<List<User>> getUsers()
     {
-        return new ResponseEntity<>(userService.getAll(), HttpStatus.OK);
+        return new ApiResponse<>(userService.getAll(), HttpStatus.OK);
     }
 
     @RequestMapping(value = ENDPOINT + "/getById/{userId}",
             method = RequestMethod.GET,
             headers = "Accept=application/json")
-    public ResponseEntity<User> getUser(@PathVariable("userId") Long id)
+    public ApiResponse<User> getUser(@PathVariable("userId") Long id)
     {
         Optional<User> user = userService.getById(id);
-        return user.map(value -> new ResponseEntity<>(value, HttpStatus.OK))
-                .orElseGet(() -> new ResponseEntity<>(null, HttpStatus.BAD_REQUEST));
+        return user.map(value -> new ApiResponse<>(value, HttpStatus.OK))
+                .orElseGet(() -> new ApiResponse<>(null, HttpStatus.BAD_REQUEST));
     }
 
     @RequestMapping(value = ENDPOINT + "/create",
             method = RequestMethod.POST,
             headers = "Accept=application/json")
-    public ResponseEntity<User> createUser(@RequestBody @Valid UserForm form)
+    public ApiResponse<User> createUser(@RequestBody @Valid UserForm form)
     {
         try
         {
             final User createdUser = userService.createUser(form);
-            return new ResponseEntity<>(createdUser, HttpStatus.OK);
-        } catch (Exception e)
+            return new ApiResponse<>(createdUser, HttpStatus.OK);
+        }
+        catch (Exception e)
         {
-            return new ResponseEntity<>(null, HttpStatus.BAD_REQUEST);
+            return new ApiResponse<>(null, HttpStatus.BAD_REQUEST, false, e.getMessage());
         }
     }
 }

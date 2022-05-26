@@ -3,6 +3,8 @@ package com.bajorek_kalandyk.crm.service;
 import com.bajorek_kalandyk.crm.domain.form.UserForm;
 import com.bajorek_kalandyk.crm.domain.model.Mail;
 import com.bajorek_kalandyk.crm.domain.model.User;
+import com.bajorek_kalandyk.crm.exception.UserAlreadyExistsException;
+import com.bajorek_kalandyk.crm.repository.MailRepository;
 import com.bajorek_kalandyk.crm.repository.UserRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Bean;
@@ -38,12 +40,9 @@ public class UserServiceImpl implements UserService
     }
 
     @Override
-    public User createUser(final UserForm form) throws Exception
+    public User createUser(final UserForm form) throws UserAlreadyExistsException
     {
-        if (!isUserFormValid(form))
-        {
-            throw new Exception("Uzytkownik o podanym loginie juz istnieje!");
-        }
+        validateForm(form);
         final Mail userMail = mailService.createMail(form.getEmail());
         final User newUser = User.builder()
                 .login(form.getLogin())
@@ -55,9 +54,17 @@ public class UserServiceImpl implements UserService
         return repository.save(newUser);
     }
 
-    private Boolean isUserFormValid(final UserForm form)
+    private void validateForm(final UserForm form) throws UserAlreadyExistsException
     {
-        User existingUser = repository.findByLogin(form.getLogin());
-        return existingUser == null;
+        final User existingUserByLogin = repository.findByLogin(form.getLogin());
+        final User existingMailByMail = repository.findByEmail(form.getEmail());
+        if (existingUserByLogin != null)
+        {
+            throw new UserAlreadyExistsException("Użytkownik z podanym loginem już istnieje!");
+        }
+        if (existingMailByMail != null)
+        {
+            throw new UserAlreadyExistsException("Użytkownik z podanym adresem email już istnieje!");
+        }
     }
 }
