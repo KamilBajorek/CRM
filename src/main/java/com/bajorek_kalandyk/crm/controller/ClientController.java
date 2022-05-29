@@ -7,7 +7,6 @@ import org.springframework.web.bind.annotation.GetMapping;
 @Controller
 public class ClientController
 {
-
     @GetMapping("/clients")
     public String clientList(Model model)
     {

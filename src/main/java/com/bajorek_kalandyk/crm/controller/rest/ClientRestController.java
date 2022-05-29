@@ -1,6 +1,8 @@
 package com.bajorek_kalandyk.crm.controller.rest;
 
+import com.bajorek_kalandyk.crm.domain.model.Address;
 import com.bajorek_kalandyk.crm.domain.model.Client;
+import com.bajorek_kalandyk.crm.domain.model.Mail;
 import com.bajorek_kalandyk.crm.service.ClientService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
@@ -10,6 +12,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RestController;
 
+import java.util.Collections;
 import java.util.List;
 
 @RestController
