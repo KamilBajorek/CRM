@@ -11,5 +11,5 @@ public interface AddressService
 
     Optional<Address> getById(Long id);
 
-    void createAddress(Address address);
+   Address createAddress(Address address);
 }

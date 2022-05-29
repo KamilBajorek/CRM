@@ -27,8 +27,8 @@ public class AddressServiceImpl implements AddressService
     }
 
     @Override
-    public void createAddress(final Address address)
+    public Address createAddress(final Address address)
     {
-        repository.save(address);
+        return repository.save(address);
     }
 }
