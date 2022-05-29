@@ -1,5 +1,6 @@
 package com.bajorek_kalandyk.crm.repository;
 
+import com.bajorek_kalandyk.crm.domain.model.Mail;
 import com.bajorek_kalandyk.crm.domain.model.User;
 import org.springframework.data.repository.CrudRepository;
 import org.springframework.stereotype.Repository;
@@ -11,6 +12,6 @@ public interface UserRepository extends CrudRepository<User, Long>
 {
     User findByLogin(String login);
 
-    User findByEmail(String email);
+    User findByEmail(Mail email);
 }
 

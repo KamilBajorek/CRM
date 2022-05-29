@@ -27,6 +27,9 @@ public class UserServiceImpl implements UserService
     @Autowired
     private UserRepository repository;
 
+    @Autowired
+    private MailRepository mailRepository;
+
     @Override
     public List<User> getAll()
     {
@@ -57,14 +60,18 @@ public class UserServiceImpl implements UserService
     private void validateForm(final UserForm form) throws UserAlreadyExistsException
     {
         final User existingUserByLogin = repository.findByLogin(form.getLogin());
-        final User existingMailByMail = repository.findByEmail(form.getEmail());
+        final Mail existingMail = mailRepository.findMailByMail(form.getEmail());
+        if (existingMail != null)
+        {
+            final User existingMailByMail = repository.findByEmail(existingMail);
+            if (existingMailByMail != null)
+            {
+                throw new UserAlreadyExistsException("Użytkownik z podanym adresem email już istnieje!");
+            }
+        }
         if (existingUserByLogin != null)
         {
             throw new UserAlreadyExistsException("Użytkownik z podanym loginem już istnieje!");
-        }
-        if (existingMailByMail != null)
-        {
-            throw new UserAlreadyExistsException("Użytkownik z podanym adresem email już istnieje!");
         }
     }
 }
