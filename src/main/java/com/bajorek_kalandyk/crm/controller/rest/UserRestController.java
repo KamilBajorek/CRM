@@ -1,5 +1,6 @@
 package com.bajorek_kalandyk.crm.controller.rest;
 
+import com.bajorek_kalandyk.crm.common.AuthenticationHelper;
 import com.bajorek_kalandyk.crm.domain.form.UserForm;
 import com.bajorek_kalandyk.crm.domain.model.User;
 import com.bajorek_kalandyk.crm.service.UserService;
