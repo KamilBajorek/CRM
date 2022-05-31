@@ -12,4 +12,10 @@ public class ClientController
     {
         return "Clients";
     }
+
+    @GetMapping("/clients/add")
+    public String addClient(Model model)
+    {
+        return "AddClients";
+    }
 }
