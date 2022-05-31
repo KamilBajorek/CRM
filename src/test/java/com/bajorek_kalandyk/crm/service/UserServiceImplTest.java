@@ -4,21 +4,23 @@ import com.bajorek_kalandyk.crm.domain.model.User;
 import com.bajorek_kalandyk.crm.repository.MailRepository;
 import com.bajorek_kalandyk.crm.repository.UserRepository;
 import org.junit.Before;
-import org.junit.jupiter.api.Test;
+import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.mockito.InjectMocks;
 import org.mockito.Mock;
-import org.springframework.test.context.junit4.SpringJUnit4ClassRunner;
+import org.mockito.junit.MockitoJUnitRunner;
 
 import java.util.List;
+import java.util.Optional;
 
 import static java.util.Collections.emptyList;
 import static java.util.Collections.singletonList;
 import static org.assertj.core.api.Assertions.assertThat;
+import static org.junit.Assert.assertTrue;
 import static org.mockito.Mockito.when;
 
-@RunWith(SpringJUnit4ClassRunner.class)
-class UserServiceImplTest
+@RunWith(MockitoJUnitRunner.class)
+public class UserServiceImplTest
 {
     @Mock
     private MailRepository mailRepository;
@@ -26,7 +28,6 @@ class UserServiceImplTest
     @Mock
     private UserRepository repository;
 
-    @Mock
     @InjectMocks
     private UserServiceImpl userService;
 
@@ -36,6 +37,7 @@ class UserServiceImplTest
     public void setUp()
     {
         when(repository.findAll()).thenReturn(singletonList(TEST_USER_1));
+        when(repository.findById(1L)).thenReturn(Optional.ofNullable(TEST_USER_1));
     }
 
     @Test
@@ -57,5 +59,14 @@ class UserServiceImplTest
         // then
         assertThat(result).isNotEmpty();
         assertThat(result.size()).isEqualTo(1);
+    }
+
+    @Test
+    public void returnExistingUserWhenCallingGetMethod()
+    {
+        // when
+        final Optional<User> result = userService.getById(1L);
+        // then
+        assertTrue(result.isPresent());
     }
 }
