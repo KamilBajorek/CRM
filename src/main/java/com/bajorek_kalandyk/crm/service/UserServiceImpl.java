@@ -47,8 +47,8 @@ public class UserServiceImpl implements UserService
         final Mail userMail = mailService.createMail(form.getEmail());
         final User newUser = User.builder()
                 .login(form.getLogin())
-                .name(form.getLogin())
-                .surname(form.getLogin())
+                .name(form.getName())
+                .surname(form.getSurname())
                 .password(passwordEncoder.encode(form.getPassword()))
                 .email(userMail)
                 .build();
