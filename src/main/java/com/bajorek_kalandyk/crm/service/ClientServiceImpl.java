@@ -1,18 +1,15 @@
 package com.bajorek_kalandyk.crm.service;
 
-import com.bajorek_kalandyk.crm.common.AuthenticationHelper;
 import com.bajorek_kalandyk.crm.domain.form.ClientForm;
-import com.bajorek_kalandyk.crm.domain.form.UserForm;
 import com.bajorek_kalandyk.crm.domain.model.Address;
 import com.bajorek_kalandyk.crm.domain.model.Client;
 import com.bajorek_kalandyk.crm.domain.model.Mail;
-import com.bajorek_kalandyk.crm.domain.model.User;
 import com.bajorek_kalandyk.crm.exception.AuthenticatedUserMissingException;
 import com.bajorek_kalandyk.crm.exception.ClientAlreadyExistsException;
-import com.bajorek_kalandyk.crm.exception.UserAlreadyExistsException;
 import com.bajorek_kalandyk.crm.repository.ClientRepository;
 import com.bajorek_kalandyk.crm.repository.MailRepository;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.domain.Sort;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
@@ -37,7 +34,7 @@ public class ClientServiceImpl implements ClientService
     @Override
     public List<Client> getAll()
     {
-        return (List<Client>) repository.findAll();
+        return repository.findAll(Sort.by("Id"));
     }
 
     @Override
@@ -59,6 +56,7 @@ public class ClientServiceImpl implements ClientService
                 .address(clientAddress)
                 .managerId(GetCurrentUser().getId())
                 .build();
+
         return repository.save(newClient);
     }
 

@@ -16,7 +16,6 @@ import javax.validation.constraints.Size;
 @EqualsAndHashCode
 public class ClientForm
 {
-
     @JsonSerialize
     @NotNull
     @Email
