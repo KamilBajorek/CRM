@@ -15,6 +15,7 @@ import org.springframework.stereotype.Service;
 import java.util.List;
 
 import static com.bajorek_kalandyk.crm.common.AuthenticationHelper.GetCurrentUser;
+import static java.time.LocalDateTime.now;
 
 @Service
 public class ClientServiceImpl implements ClientService
@@ -34,7 +35,7 @@ public class ClientServiceImpl implements ClientService
     @Override
     public List<Client> getAll()
     {
-        return repository.findAll(Sort.by("Id"));
+        return repository.findAll(Sort.by(Sort.Direction.DESC, "Id"));
     }
 
     @Override
@@ -55,6 +56,7 @@ public class ClientServiceImpl implements ClientService
                 .email(clientMail)
                 .address(clientAddress)
                 .managerId(GetCurrentUser().getId())
+                .createDate(now())
                 .build();
 
         return repository.save(newClient);

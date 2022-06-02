@@ -10,10 +10,7 @@ import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
-import javax.persistence.JoinColumn;
-import javax.persistence.OneToOne;
 import javax.persistence.Table;
-import java.time.LocalDateTime;
 
 @NoArgsConstructor
 @AllArgsConstructor
@@ -21,24 +18,12 @@ import java.time.LocalDateTime;
 @Getter
 @Builder(toBuilder = true)
 @EqualsAndHashCode
-@Table(name = "Clients")
-public class Client
+@Table(name = "ProductCategories")
+public class ProductCategory
 {
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
     private Long id;
-    private Long managerId;
-
-    @OneToOne
-    @JoinColumn(name = "addressId")
-    private Address address;
-
-    @OneToOne
-    @JoinColumn(name = "emailId")
-    private Mail email;
 
     private String name;
-    private String surname;
-
-    private LocalDateTime createDate;
 }

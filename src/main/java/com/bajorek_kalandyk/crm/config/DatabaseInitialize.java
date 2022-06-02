@@ -29,7 +29,8 @@ public class DatabaseInitialize
                             "surname varchar(35) not null," +
                             "emailId INTEGER not null," +
                             "managerId INTEGER not null," +
-                            "addressId INTEGER not null)"
+                            "addressId INTEGER not null," +
+                            "createDate datetime not null default CURRENT_TIMESTAMP)"
             );
             statement.executeUpdate(
                     "CREATE TABLE IF NOT EXISTS Products(" +
@@ -69,9 +70,15 @@ public class DatabaseInitialize
                             "productId INTEGER not null," +
                             "date datetime not null)"
             );
+            statement.executeUpdate(
+                    "CREATE TABLE IF NOT EXISTS ProductCategories(" +
+                            "id INTEGER Primary key, " +
+                            "name varchar(64 not null)"
+            );
             statement.close();
             connection.close();
-        } catch (SQLException e)
+        }
+        catch (SQLException e)
         {
             e.printStackTrace();
         }
