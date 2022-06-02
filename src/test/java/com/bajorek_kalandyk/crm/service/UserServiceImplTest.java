@@ -19,6 +19,7 @@ import java.util.Optional;
 
 import static java.util.Collections.emptyList;
 import static java.util.Collections.singletonList;
+import static java.util.Optional.ofNullable;
 import static org.assertj.core.api.Assertions.assertThat;
 import static org.junit.Assert.assertFalse;
 import static org.junit.Assert.assertTrue;
@@ -48,7 +49,7 @@ public class UserServiceImplTest
     public void setUp()
     {
         when(repository.findAll()).thenReturn(singletonList(TEST_USER_1));
-        when(repository.findById(1L)).thenReturn(Optional.ofNullable(TEST_USER_1));
+        when(repository.findById(1L)).thenReturn(ofNullable(TEST_USER_1));
     }
 
     @Test

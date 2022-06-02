@@ -1,11 +1,13 @@
 package com.bajorek_kalandyk.crm.service;
 
+import com.bajorek_kalandyk.crm.common.AuthenticationHelper;
 import com.bajorek_kalandyk.crm.domain.form.ClientForm;
 import com.bajorek_kalandyk.crm.domain.form.UserForm;
 import com.bajorek_kalandyk.crm.domain.model.Address;
 import com.bajorek_kalandyk.crm.domain.model.Client;
 import com.bajorek_kalandyk.crm.domain.model.Mail;
 import com.bajorek_kalandyk.crm.domain.model.User;
+import com.bajorek_kalandyk.crm.exception.AuthenticatedUserMissingException;
 import com.bajorek_kalandyk.crm.exception.ClientAlreadyExistsException;
 import com.bajorek_kalandyk.crm.exception.UserAlreadyExistsException;
 import com.bajorek_kalandyk.crm.repository.ClientRepository;
@@ -15,8 +17,11 @@ import org.springframework.stereotype.Service;
 
 import java.util.List;
 
+import static com.bajorek_kalandyk.crm.common.AuthenticationHelper.GetCurrentUser;
+
 @Service
-public class ClientServiceImpl implements ClientService {
+public class ClientServiceImpl implements ClientService
+{
     @Autowired
     private ClientRepository repository;
 
@@ -30,12 +35,14 @@ public class ClientServiceImpl implements ClientService {
     private AddressService addressService;
 
     @Override
-    public List<Client> getAll() {
+    public List<Client> getAll()
+    {
         return (List<Client>) repository.findAll();
     }
 
     @Override
-    public Client createClient(final ClientForm form) throws ClientAlreadyExistsException {
+    public Client createClient(final ClientForm form) throws ClientAlreadyExistsException, AuthenticatedUserMissingException
+    {
         validateForm(form);
         final Mail clientMail = mailService.createMail(form.getEmail());
         final Address clientAddress = addressService.createAddress(Address.builder()
@@ -50,6 +57,7 @@ public class ClientServiceImpl implements ClientService {
                 .surname(form.getSurname())
                 .email(clientMail)
                 .address(clientAddress)
+                .managerId(GetCurrentUser().getId())
                 .build();
         return repository.save(newClient);
     }

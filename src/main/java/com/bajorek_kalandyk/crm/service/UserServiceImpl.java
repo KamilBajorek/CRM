@@ -44,6 +44,7 @@ public class UserServiceImpl implements UserService
     public User createUser(final UserForm form) throws UserAlreadyExistsException
     {
         validateForm(form);
+
         final Mail userMail = mailService.createMail(form.getEmail());
         final User newUser = User.builder()
                 .login(form.getLogin())
