@@ -73,7 +73,7 @@ public class DatabaseInitialize
             statement.executeUpdate(
                     "CREATE TABLE IF NOT EXISTS ProductCategories(" +
                             "id INTEGER Primary key, " +
-                            "name varchar(64 not null)"
+                            "name varchar(64) not null)"
             );
             statement.close();
             connection.close();
