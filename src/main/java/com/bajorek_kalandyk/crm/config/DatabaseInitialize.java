@@ -30,7 +30,7 @@ public class DatabaseInitialize
                             "emailId INTEGER not null," +
                             "managerId INTEGER not null," +
                             "addressId INTEGER not null," +
-                            "createDate datetime not null default CURRENT_TIMESTAMP)"
+                            "createDate timestamp not null)"
             );
             statement.executeUpdate(
                     "CREATE TABLE IF NOT EXISTS Products(" +

@@ -11,12 +11,24 @@ import javax.sql.DataSource;
 public class DatabaseConfig
 {
     @Bean
+    @Profile("!test")
     public DataSource dataSource()
     {
         DataSourceBuilder dataSourceBuilder = DataSourceBuilder.create();
 
         dataSourceBuilder.driverClassName("org.sqlite.JDBC");
         dataSourceBuilder.url("jdbc:sqlite:crmdb.db");
+        return dataSourceBuilder.build();
+    }
+
+    @Bean
+    @Profile("test")
+    public DataSource testDataSource()
+    {
+        DataSourceBuilder dataSourceBuilder = DataSourceBuilder.create();
+
+        dataSourceBuilder.driverClassName("org.sqlite.JDBC");
+        dataSourceBuilder.url("jdbc:sqlite:crmdb_test.db");
         return dataSourceBuilder.build();
     }
 }

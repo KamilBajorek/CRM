@@ -13,7 +13,7 @@ import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.OneToOne;
 import javax.persistence.Table;
-import java.time.LocalDateTime;
+import java.sql.Timestamp;
 
 @NoArgsConstructor
 @AllArgsConstructor
@@ -40,5 +40,5 @@ public class Client
     private String name;
     private String surname;
 
-    private LocalDateTime createDate;
+    private Timestamp createDate;
 }
