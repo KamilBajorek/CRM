@@ -2,7 +2,6 @@ package com.bajorek_kalandyk.crm.domain.form;
 
 import com.fasterxml.jackson.databind.annotation.JsonSerialize;
 import lombok.*;
-import lombok.NoArgsConstructor;
 
 import javax.validation.constraints.Email;
 import javax.validation.constraints.NotNull;
@@ -13,8 +12,11 @@ import javax.validation.constraints.Size;
 @Getter
 @Builder(toBuilder = true)
 @EqualsAndHashCode
-public class ClientForm
+public class ClientUpdateForm
 {
+    @NotNull
+    private Long id;
+
     @JsonSerialize
     @NotNull
     @Email
@@ -54,4 +56,5 @@ public class ClientForm
     @NotNull
     @Size(min = 2, max = 50)
     private String country;
+
 }
