@@ -38,8 +38,8 @@ public class ClientRestController
     {
         try
         {
-         final Client createdClient = clientService.createClient(form);
-         return new ResponseEntity<>(createdClient, HttpStatus.OK);
+            final Client createdClient = clientService.createClient(form);
+            return new ResponseEntity<>(createdClient, HttpStatus.OK);
         }
         catch (Exception e)
         {

@@ -8,12 +8,18 @@ import javax.sql.DataSource;
 import java.sql.Connection;
 import java.sql.SQLException;
 import java.sql.Statement;
+import java.util.List;
+
+import static java.util.Arrays.asList;
 
 @Configuration
 public class DatabaseInitialize
 {
     @Autowired
     private DataSource dataSource;
+
+    public static final List<String> TABLES = asList("Clients", "Products", "Users", "Mails", "Addresses",
+            "Purchases", "ProductCategories");
 
     @PostConstruct
     public void initialize()
