@@ -7,6 +7,7 @@ import org.springframework.data.repository.CrudRepository;
 import org.springframework.stereotype.Repository;
 import org.springframework.transaction.annotation.Transactional;
 
+import java.sql.Timestamp;
 import java.util.List;
 
 @Repository
@@ -16,4 +17,6 @@ public interface ClientRepository extends CrudRepository<Client, Long>
     Client findClientByEmail(Mail mail);
 
     List<Client> findAll(Sort id);
+
+    List<Client> findClientByCreateDateBetween(Timestamp from, Timestamp to);
 }
