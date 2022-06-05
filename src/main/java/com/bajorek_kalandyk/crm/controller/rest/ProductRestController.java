@@ -44,4 +44,5 @@ public class ProductRestController
         productService.createProduct(product);
         return new ResponseEntity<>(product, HttpStatus.OK);
     }
+
 }

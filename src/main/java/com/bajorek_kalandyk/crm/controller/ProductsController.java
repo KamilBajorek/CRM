@@ -19,4 +19,10 @@ public class ProductsController
     {
         return "AddProducts";
     }
+
+    @GetMapping("/products/addCategory")
+    public String addProductCategory(Model model)
+    {
+        return "AddProductCategory";
+    }
 }

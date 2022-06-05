@@ -9,4 +9,5 @@ import org.springframework.transaction.annotation.Transactional;
 @Transactional(readOnly = true)
 public interface ProductCategoryRepository extends CrudRepository<ProductCategory, Long>
 {
+    ProductCategory findByName(String name);
 }
