@@ -6,6 +6,7 @@ import com.bajorek_kalandyk.crm.domain.model.*;
 import com.bajorek_kalandyk.crm.exception.AuthenticatedUserMissingException;
 import com.bajorek_kalandyk.crm.exception.ClientAlreadyExistsException;
 import com.bajorek_kalandyk.crm.exception.ProductAlreadyExistsException;
+import com.bajorek_kalandyk.crm.exception.ProductCategoryDoesNotExistsException;
 import com.bajorek_kalandyk.crm.repository.ProductCategoryRepository;
 import com.bajorek_kalandyk.crm.repository.ProductRepository;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -40,15 +41,18 @@ public class ProductServiceImpl implements ProductService
     }
 
     @Override
-    public Product createProduct(final ProductForm form) throws ProductAlreadyExistsException
-    {
+    public Product createProduct(final ProductForm form) throws ProductAlreadyExistsException, ProductCategoryDoesNotExistsException {
         validateForm(form);
+        final Optional<ProductCategory> productCategory = categoryRepository.findById(form.getCategoryId());
+        if( productCategory.isEmpty())
+        {
+            throw new ProductCategoryDoesNotExistsException("Kategoria produktu nie istnieje");
+        }
         final Product newProduct = Product.builder()
                 .name(form.getName())
                 .description(form.getDescription())
                 .price(form.getPrice())
-                .category(form.)
-                .createDate(Timestamp.valueOf(LocalDateTime.now()))
+                .category(productCategory.get())
                 .build();
 
         return repository.save(newProduct);
@@ -62,4 +66,5 @@ public class ProductServiceImpl implements ProductService
             throw new ProductAlreadyExistsException("Produkt o podanej nazwie już istnieje!");
         }
     }
+
 }

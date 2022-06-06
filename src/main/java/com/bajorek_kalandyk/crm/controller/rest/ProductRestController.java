@@ -1,5 +1,6 @@
 package com.bajorek_kalandyk.crm.controller.rest;
 
+import com.bajorek_kalandyk.crm.domain.form.ProductForm;
 import com.bajorek_kalandyk.crm.domain.model.Product;
 import com.bajorek_kalandyk.crm.service.ProductService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -7,6 +8,7 @@ import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
+import javax.validation.Valid;
 import java.util.List;
 import java.util.Optional;
 
@@ -39,10 +41,16 @@ public class ProductRestController
     @RequestMapping(value = ENDPOINT + "/create",
             method = RequestMethod.POST,
             headers = "Accept=application/json")
-    public ResponseEntity<Product> createProduct(@RequestBody Product product)
+    public ResponseEntity<?> createProduct(@RequestBody @Valid ProductForm form)
     {
-        productService.createProduct(product);
-        return new ResponseEntity<>(product, HttpStatus.OK);
+        try
+        {
+            return new ResponseEntity<>(productService.createProduct(form), HttpStatus.OK);
+        }
+        catch (Exception e)
+        {
+            return new ResponseEntity<>(e.getMessage(), HttpStatus.BAD_REQUEST);
+        }
     }
 
 }

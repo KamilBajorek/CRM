@@ -34,9 +34,13 @@
         <div class="col-md-6">
             <div class="card px-5 py-5" id="form1">
                 <h1>Dodawanie Produktu</h1>
-                <form th:action="@{/user/create}" method="post" class="form-data">
-                    <div th:if="${param.error}">
-                        <div class="alert alert-danger">Niepoprawny login lub hasło.
+                <form method="post" class="form-data">
+                    <div id="success-alert" style="display: none">
+                        <div class="alert alert-success" id="success-text">
+                        </div>
+                    </div>
+                    <div id="error-alert" style="display: none">
+                        <div class="alert alert-danger" id="error-text">
                         </div>
                     </div>
 
