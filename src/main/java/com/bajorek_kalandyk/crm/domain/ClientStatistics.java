@@ -6,7 +6,7 @@ import lombok.EqualsAndHashCode;
 import lombok.Getter;
 
 import java.time.LocalDate;
-import java.util.Map;
+import java.util.List;
 
 @AllArgsConstructor
 @Getter
@@ -14,7 +14,8 @@ import java.util.Map;
 @EqualsAndHashCode
 public class ClientStatistics
 {
-    private final Map<LocalDate, Long> ClientsAddedByDate;
+    private final List<LocalDate> dates;
+    private final List<Long> clientCounts;
 
     private final Integer ClientsTotal;
 }

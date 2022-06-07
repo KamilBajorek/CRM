@@ -20,6 +20,7 @@ public class CrmApplication
     {
         ObjectMapper mapper = new ObjectMapper();
         mapper.configure(DeserializationFeature.FAIL_ON_UNKNOWN_PROPERTIES, false);
+        mapper.findAndRegisterModules();
         mapper.configure(MapperFeature.DEFAULT_VIEW_INCLUSION, true);
 
         return mapper;

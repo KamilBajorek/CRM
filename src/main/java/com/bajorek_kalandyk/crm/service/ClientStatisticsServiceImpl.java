@@ -9,13 +9,16 @@ import org.springframework.stereotype.Service;
 
 import java.time.LocalDate;
 import java.time.LocalDateTime;
+import java.util.ArrayList;
 import java.util.List;
 import java.util.Map;
+import java.util.TreeMap;
 
 import static java.sql.Timestamp.valueOf;
 import static java.time.LocalDateTime.of;
 import static java.time.LocalTime.MAX;
 import static java.time.LocalTime.MIDNIGHT;
+import static java.util.Arrays.asList;
 import static java.util.stream.Collectors.counting;
 import static java.util.stream.Collectors.groupingBy;
 
@@ -33,9 +36,11 @@ public class ClientStatisticsServiceImpl implements ClientStatisticsService
 
         final List<Client> clients = clientRepository.findClientByCreateDateBetween(valueOf(startDate), valueOf(endDate));
 
+        final Map<LocalDate, Long> data = new TreeMap<>(groupClientsByDate(clients));
         return ClientStatistics.builder()
                 .ClientsTotal(clients.size())
-                .ClientsAddedByDate(groupClientsByDate(clients))
+                .dates(new ArrayList<>(data.keySet()))
+                .clientCounts(new ArrayList<>(data.values()))
                 .build();
     }
 
