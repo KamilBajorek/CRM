@@ -47,11 +47,11 @@ public class ProductCategoryRestController
     }
 
     @RequestMapping(value = ENDPOINT + "/create",
-            method = RequestMethod.POST,
+            method = RequestMethod.GET,
             headers = "Accept=application/json")
-    public ResponseEntity<ProductCategory> createProductCategory(@RequestBody String category) throws ProductCategoryAlredyExistsException, ClientAlreadyExistsException
+    public ResponseEntity<ProductCategory> createProductCategory(@RequestParam("name") String name) throws ProductCategoryAlredyExistsException, ClientAlreadyExistsException
     {
-        ProductCategory createdProductCategory = productCategoryService.createProductCategory(category);
+        ProductCategory createdProductCategory = productCategoryService.createProductCategory(name);
         return new ResponseEntity<>(createdProductCategory, HttpStatus.OK);
     }
 

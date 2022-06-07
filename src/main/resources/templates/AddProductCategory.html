@@ -77,15 +77,14 @@
         function ($) {
 
             $("#add-category").click(function (event) {
-                var data = {}
-                data["name"] = $("#name").val();
+                var name = $("#name").val();
                 $("#add-category").prop("disabled", true);
 
                 $.ajax({
-                    type: "POST",
+                    type: "GET",
                     contentType: "application/json",
                     url: "/productCategory/create",
-                    data: JSON.stringify(data),
+                    data:'name='+name,
                     dataType: 'json',
                     timeout: 600000,
                     success: function (res) {

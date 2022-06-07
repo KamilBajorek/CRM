@@ -28,11 +28,9 @@ public class ProductForm
 
     @JsonSerialize
     @NotNull
-    @Size(min = 1, max = 50)
     private BigDecimal price;
 
     @JsonSerialize
     @NotNull
-    @Size(min = 1, max = 256)
     private Long categoryId;
 }
