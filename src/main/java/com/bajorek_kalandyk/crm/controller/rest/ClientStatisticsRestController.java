@@ -26,7 +26,6 @@ public class ClientStatisticsRestController
             headers = "Accept=application/json")
     public ResponseEntity<ClientStatistics> getByType(@PathVariable("typeId") Long type)
     {
-
         return new ResponseEntity<>(statisticsService.getStatisticsByType(getById(type)), HttpStatus.OK);
     }
 }
