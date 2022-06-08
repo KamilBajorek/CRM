@@ -18,5 +18,7 @@ public interface ClientRepository extends CrudRepository<Client, Long>
 
     List<Client> findAll(Sort id);
 
+    List<Client> findByManagerId(Long managerId);
+
     List<Client> findClientByCreateDateBetween(Timestamp from, Timestamp to);
 }

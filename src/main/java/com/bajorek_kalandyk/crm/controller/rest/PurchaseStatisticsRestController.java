@@ -1,5 +1,6 @@
 package com.bajorek_kalandyk.crm.controller.rest;
 
+import com.bajorek_kalandyk.crm.domain.PerUserPurchaseStatistics;
 import com.bajorek_kalandyk.crm.domain.PurchaseStatistics;
 import com.bajorek_kalandyk.crm.service.PurchaseStatisticsService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -26,5 +27,13 @@ public class PurchaseStatisticsRestController
     public ResponseEntity<PurchaseStatistics> getByType(@PathVariable("typeId") Long type)
     {
         return new ResponseEntity<>(statisticsService.getStatisticsByType(getById(type)), HttpStatus.OK);
+    }
+
+    @RequestMapping(value = ENDPOINT + "/getUserStatisticsByType/{typeId}",
+            method = RequestMethod.GET,
+            headers = "Accept=application/json")
+    public ResponseEntity<PerUserPurchaseStatistics> getUserStatisticsByType(@PathVariable("typeId") Long type)
+    {
+        return new ResponseEntity<>(statisticsService.getPerUserStatisticsByType(getById(type)), HttpStatus.OK);
     }
 }

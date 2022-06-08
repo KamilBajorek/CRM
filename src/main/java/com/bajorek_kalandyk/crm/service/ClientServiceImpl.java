@@ -44,6 +44,12 @@ public class ClientServiceImpl implements ClientService
     }
 
     @Override
+    public List<Client> getByManagerId(final Long managerId)
+    {
+        return repository.findByManagerId(managerId);
+    }
+
+    @Override
     public Optional<Client> getById(final Long id)
     {
         return repository.findById(id);
@@ -64,7 +70,7 @@ public class ClientServiceImpl implements ClientService
                 .zipCode(form.getZipCode())
                 .houseNumber(form.getHouseNumber())
                 .country(form.getCountry())
-                .build()) ;
+                .build());
         Mail updatedMail = existingClient.get().getEmail();
         if (!form.getEmail().equals(existingClient.get().getEmail().getMail()))
         {

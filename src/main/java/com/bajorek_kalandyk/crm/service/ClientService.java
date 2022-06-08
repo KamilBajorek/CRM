@@ -15,6 +15,8 @@ public interface ClientService
 {
     List<Client> getAll();
 
+    List<Client> getByManagerId(Long managerId);
+
     Optional<Client> getById(Long id);
 
     Client createClient(ClientForm form) throws ClientAlreadyExistsException, AuthenticatedUserMissingException;
