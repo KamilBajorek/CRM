@@ -13,7 +13,7 @@ import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
 import javax.persistence.Table;
-import java.time.LocalDateTime;
+import java.sql.Timestamp;
 
 @NoArgsConstructor
 @AllArgsConstructor
@@ -33,5 +33,5 @@ public class Purchase
     @JoinColumn(name = "productId")
     private Product product;
 
-    private LocalDateTime date;
+    private Timestamp date;
 }

@@ -18,7 +18,6 @@ import static java.sql.Timestamp.valueOf;
 import static java.time.LocalDateTime.of;
 import static java.time.LocalTime.MAX;
 import static java.time.LocalTime.MIDNIGHT;
-import static java.util.Arrays.asList;
 import static java.util.stream.Collectors.counting;
 import static java.util.stream.Collectors.groupingBy;
 

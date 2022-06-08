@@ -74,7 +74,7 @@ public class DatabaseInitialize
                             "id INTEGER Primary key, " +
                             "clientId INTEGER not null," +
                             "productId INTEGER not null," +
-                            "date datetime not null)"
+                            "date timestamp not null)"
             );
             statement.executeUpdate(
                     "CREATE TABLE IF NOT EXISTS ProductCategories(" +

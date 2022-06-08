@@ -11,10 +11,16 @@ import com.bajorek_kalandyk.crm.repository.PurchaseRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import java.sql.Timestamp;
+import java.time.LocalDateTime;
 import java.util.List;
 import java.util.Optional;
 
+import static java.sql.Timestamp.valueOf;
 import static java.time.LocalDateTime.now;
+import static java.time.LocalDateTime.of;
+import static java.time.LocalTime.MAX;
+import static java.time.LocalTime.MIDNIGHT;
 
 @Service
 public class PurchaseServiceImpl implements PurchaseService
@@ -37,7 +43,8 @@ public class PurchaseServiceImpl implements PurchaseService
     @Override
     public List<Purchase> searchPurchases(final PurchaseSearchForm searchForm)
     {
-        return repository.findByDateBetween(searchForm.getDateFrom(), searchForm.getDateTo());
+        return repository.findByDateBetween(valueOf(of(searchForm.getDateFrom(), MIDNIGHT)
+        ), valueOf(of(searchForm.getDateTo(), MAX)));
     }
 
     @Override
@@ -57,7 +64,7 @@ public class PurchaseServiceImpl implements PurchaseService
         final Purchase purchase = Purchase.builder()
                 .clientId(createForm.getClientId())
                 .product(product.get())
-                .date(now())
+                .date(Timestamp.valueOf(LocalDateTime.now()))
                 .build();
 
         return repository.save(purchase);

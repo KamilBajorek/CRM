@@ -6,6 +6,7 @@ import org.springframework.data.repository.CrudRepository;
 import org.springframework.stereotype.Repository;
 import org.springframework.transaction.annotation.Transactional;
 
+import java.sql.Timestamp;
 import java.time.LocalDate;
 import java.time.LocalDateTime;
 import java.util.List;
@@ -14,8 +15,5 @@ import java.util.List;
 @Transactional(readOnly = true)
 public interface PurchaseRepository extends CrudRepository<Purchase, Long>
 {
-    // @Query("SELECT p FROM Purchases p WHERE p.date >= ?1 and p.date <= ?2")
-    // List<Purchase> search(LocalDate dateFrom, LocalDate dateTo);
-
-    List<Purchase> findByDateBetween(LocalDate dateFrom, LocalDate dateTo);
+    List<Purchase> findByDateBetween(Timestamp from, Timestamp to);
 }
