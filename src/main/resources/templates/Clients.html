@@ -18,8 +18,9 @@
             </button>
             <div class="collapse navbar-collapse" id="navbarCollapse">
                 <div class="navbar-nav">
-                    <a href="/clients/add" class="nav-item nav-link"><i class="bi bi-person-plus-fill"></i>Dodaj klienta</a>
+                    <a href="/clients" class="nav-item nav-link disabled"><i class="bi-people-fill"></i>Klienci</a>
                     <a href="/products" class="nav-item nav-link"><i class="bi bi-bag-fill"></i> Produkty</a>
+                    <a href="/purchases" class="nav-item nav-link"><i class="bi bi-cash"></i> Sprzedaż</a>
                 </div>
                 <div class="navbar-nav ms-auto">
                     <a href="/" th:href="@{/login?logout=true}" class="nav-item nav-link"><i
@@ -32,6 +33,16 @@
 <div class="container mt-5">
     <div class="row d-flex justify-content-center">
         <div class="col-md-10">
+            <div class="card px-3 py-3">
+                <div class="row">
+                    <div class="col-md-10">
+                        <h3>Lista klientów</h3>
+                    </div>
+                    <div class="col-md-2 col-md-offset-3 text-right">
+                        <a class="btn btn-primary" th:href="@{/clients/add}">Dodaj klienta</a>
+                    </div>
+                </div>
+            </div>
             <div class="list-group w-auto" id="client-list">
             </div>
         </div>

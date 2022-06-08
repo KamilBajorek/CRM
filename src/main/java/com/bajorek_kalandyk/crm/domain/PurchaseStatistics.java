@@ -1,18 +1,19 @@
-package com.bajorek_kalandyk.crm.domain.form;
+package com.bajorek_kalandyk.crm.domain;
 
 import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.EqualsAndHashCode;
 import lombok.Getter;
 
-import java.time.LocalDate;
+import java.util.List;
 
 @AllArgsConstructor
 @Getter
 @Builder(toBuilder = true)
 @EqualsAndHashCode
-public class PurchaseSearchForm
+public class PurchaseStatistics
 {
-    private final LocalDate dateFrom;
-    private final LocalDate dateTo;
+    private final List<String> productNames;
+
+    private final List<Long> productsSold;
 }

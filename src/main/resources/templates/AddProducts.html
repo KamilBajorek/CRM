@@ -20,6 +20,7 @@
                 <div class="navbar-nav">
                     <a href="/clients" class="nav-item nav-link"><i class="bi-people-fill"></i> Klienci</a>
                     <a href="/products" class="nav-item nav-link"><i class="bi bi-bag-fill"></i> Produkty</a>
+                    <a href="/purchases" class="nav-item nav-link"><i class="bi bi-cash"></i> Sprzedaż</a>
                 </div>
                 <div class="navbar-nav ms-auto">
                     <a href="/" th:href="@{/login?logout=true}" class="nav-item nav-link"><i class="bi bi-box-arrow-right"></i> Wyloguj</a>
@@ -65,11 +66,10 @@
                     <div class="form-group">
                         <label for="product-category">Kategoria produktu</label>
                     <select id="product-category" class="form-select" aria-label="Kategoria produktu">
-
                     </select>
                     </div>
 
-                    <div class="form-group">
+                    <div class="form-group mt-2">
                         <div class="row">
                             <div class="col-sm-6 col-sm-offset-3">
                                 <input type="submit" name="add-product" id="add-product"
@@ -96,7 +96,6 @@
                 type: "GET",
                 dataType: "json",
                 success: function (data) {
-                    console.log(data)
                     $.each(data, function (index, category) {
                         $("#product-category").append(' <option value="'+ category.id + '">'+ category.name + '</option>');
                     });

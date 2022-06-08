@@ -19,9 +19,8 @@
             <div class="collapse navbar-collapse" id="navbarCollapse">
                 <div class="navbar-nav">
                     <a href="/clients" class="nav-item nav-link"><i class="bi-people-fill"></i> Klienci</a>
-                    <a href="/products/add" class="nav-item nav-link"><i class="bi bi-bag-plus"></i> Dodaj produkty</a>
-                    <a href="/products/addCategory" class="nav-item nav-link"><i class="bi bi-plus"></i> Dodaj kategorie
-                        produktów</a>
+                    <a href="/products" class="nav-item nav-link disabled"><i class="bi bi-bag-fill"></i> Produkty</a>
+                    <a href="/purchases" class="nav-item nav-link"><i class="bi bi-cash"></i> Sprzedaż</a>
                 </div>
                 <div class="navbar-nav ms-auto">
                     <a href="/" th:href="@{/login?logout=true}" class="nav-item nav-link"><i
@@ -35,6 +34,19 @@
 <div class="container mt-5">
     <div class="row d-flex justify-content-center">
         <div class="col-md-10">
+            <div class="card px-3 py-3">
+                <div class="row">
+                    <div class="col-md-8">
+                        <h3>Lista produktów</h3>
+                    </div>
+                    <div class="col-md-2 col-md-offset-3 text-right">
+                        <a class="btn btn-primary" th:href="@{/products/add}">Dodaj produkt</a>
+                    </div>
+                    <div class="col-md-2 col-md-offset-3 text-right">
+                        <a class="btn btn-primary" th:href="@{/products/addCategory}">Dodaj kategorię</a>
+                    </div>
+                </div>
+            </div>
             <div class="list-group w-auto" id="product-list">
             </div>
         </div>
@@ -51,7 +63,6 @@
                 type: "GET",
                 dataType: "json",
                 success: function (data) {
-                    console.log(data)
                     $.each(data, function (index, product) {
                         $("#product-list").append('<a href="product/' + product.id + '" class="list-group-item list-group-item-action d-flex gap-3 py-3" aria-current="true">' +
                             '<img src="https://www.pinpng.com/pngs/m/53-531620_png-file-person-icon-png-free-transparent-png.png" alt="twbs" width="32" height="32" class="rounded-circle flex-shrink-0">' +

@@ -1,7 +1,6 @@
 package com.bajorek_kalandyk.crm.service;
 
 import com.bajorek_kalandyk.crm.domain.form.PurchaseCreateForm;
-import com.bajorek_kalandyk.crm.domain.form.PurchaseSearchForm;
 import com.bajorek_kalandyk.crm.domain.model.Client;
 import com.bajorek_kalandyk.crm.domain.model.Product;
 import com.bajorek_kalandyk.crm.domain.model.Purchase;
@@ -38,13 +37,6 @@ public class PurchaseServiceImpl implements PurchaseService
     public List<Purchase> getAll()
     {
         return (List<Purchase>) repository.findAll();
-    }
-
-    @Override
-    public List<Purchase> searchPurchases(final PurchaseSearchForm searchForm)
-    {
-        return repository.findByDateBetween(valueOf(of(searchForm.getDateFrom(), MIDNIGHT)
-        ), valueOf(of(searchForm.getDateTo(), MAX)));
     }
 
     @Override
