@@ -309,7 +309,6 @@
         });
     });
 
-
     $("#user-stat-type").on('change', function (e) {
         var selectedType = this.value
         $.ajax({
@@ -338,7 +337,13 @@
                     },
                     options: {
                         scales: {
+                            xAxes: [{
+                                ticks: {
+                                    min: 0
+                                }
+                            }],
                             yAxes: [{
+                                stacked:true,
                                 ticks: {
                                     beginAtZero: true
                                 }
